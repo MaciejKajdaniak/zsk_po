@@ -14,9 +14,16 @@ class UserFormController extends Controller
         //return $req->url();
         //return $req->path();
 
+        $req->validate([
+            'firstName' => 'required | min:3 | max:10',
+            'lastName' => 'required | min:3 | max:20',
+            'mail' => 'required | min:3 | max:10 | email',
+        ]);
+        
         $data =[
             'firstName' => $req->input('firstName'),
             'lastName' => $req->input('lastName'),
+            'mail' => $req->input('mail'),
         ];
 
         return view('user', $data);
